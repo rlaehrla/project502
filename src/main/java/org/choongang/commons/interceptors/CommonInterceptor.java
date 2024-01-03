@@ -3,6 +3,7 @@ package org.choongang.commons.interceptors;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.choongang.member.MemberUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -13,6 +14,7 @@ public class CommonInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         checkDevice(request);
+        clearLoginData(request);
 
         return true;
     }
@@ -26,12 +28,20 @@ public class CommonInterceptor implements HandlerInterceptor {
     private void checkDevice(HttpServletRequest request) {
         String device = request.getParameter("device");
         if (!StringUtils.hasText(device)) {
-            return; // 처리 하지 않는다.
+            return;
         }
 
         device = device.toUpperCase().equals("MOBILE") ? "MOBILE" : "PC";
 
         HttpSession session = request.getSession();
         session.setAttribute("device", device);
+    }
+
+    private void clearLoginData(HttpServletRequest request) {
+        String URL = request.getRequestURI();
+        if (URL.indexOf("/member/login") == -1) {
+            HttpSession session = request.getSession();
+            MemberUtil.clearLoginData(session);
+        }
     }
 }
