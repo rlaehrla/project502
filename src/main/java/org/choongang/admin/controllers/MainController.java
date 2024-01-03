@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController implements ExceptionProcessor {
     @GetMapping
     public String index() {
-        return "admin/index";
+        return "admin/main/index";
     }
 }
