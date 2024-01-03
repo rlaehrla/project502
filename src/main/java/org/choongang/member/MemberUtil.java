@@ -27,4 +27,5 @@ public class MemberUtil {
         session.removeAttribute("NotBlank_password");
         session.removeAttribute("Global_error");
     }
+
 }

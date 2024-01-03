@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="#{회원가입}"></h1>
@@ -49,9 +49,9 @@
         </dl>
 
         <div th:text="#{회원가입_약관}"></div>
-        <div class="terms">약관....</div>
+        <div class="terms">약관...</div>
         <div class="terms_agree">
-            <input type="checkbox" name="agree" value="true" id="agree">
+            <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
             <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
 
             <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>

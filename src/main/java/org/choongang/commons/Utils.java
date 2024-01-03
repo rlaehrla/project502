@@ -32,14 +32,12 @@ public class Utils {
             return device.equals("MOBILE");
         }
 
-
         // 요청 헤더 : User-Agent
         String ua = request.getHeader("User-Agent");
 
         String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
 
-        return ua.matches(pattern);
-
+       return ua.matches(pattern);
     }
 
     public String tpl(String path) {

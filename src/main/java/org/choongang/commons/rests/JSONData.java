@@ -13,5 +13,4 @@ public class JSONData<T> {
     private boolean success = true;
     private T data;
     private String message;
-
 }
